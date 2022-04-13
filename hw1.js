@@ -123,7 +123,7 @@ const Product = class Product {
      * Reference: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array 
      */
      static inStock = (products) => {
-         return products.filter( product => product.availability === 'In Stock')
+         return products.filter(product => product.availability === 'In Stock')
         }
 
 
@@ -140,6 +140,7 @@ const Product = class Product {
      */
     static halfOff = (products) => { 
 
+        return products.map(product => new Product(`${product.name}, ${product.price * 0.5}, ${product.availability}`))
     }
 
     /**
@@ -155,9 +156,24 @@ const Product = class Product {
      * Reference: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array 
      * Reference: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat (currency formatting)
      */
-    static printProducts = (products) => { }
+     static printProducts = (products) => {
+        products.forEach(product => {
+                    
+        {
+            if (product.availability === 'In Stock'){
+                var yn = 'Yes'
+            }
+            else {
+                var yn = 'No'
+            }
+        }
+        console.log(`Product: ${product.name}, Cost: ${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(product.price)}, Availability: ${yn}`)
+        })
+
+    }
 
 };
+
 // ----------------------------------
 // DO NOT MODIFY CODE BELOW THIS LINE
 // ----------------------------------
